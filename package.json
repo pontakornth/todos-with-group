@@ -19,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/pontakornth/todos-with-group/issues"
   },
-  "homepage": "https://github.com/pontakornth/todos-with-group#readme"
+  "homepage": "https://github.com/pontakornth/todos-with-group#readme",
+  "dependencies": {
+    "parcel": "^1.12.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "typescript": "^3.7.3"
+  }
 }
