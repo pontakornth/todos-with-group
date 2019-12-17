@@ -1,0 +1,23 @@
+{
+  "name": "todos-with-group",
+  "version": "0.1.0",
+  "description": "Todo but with group",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pontakornth/todos-with-group.git"
+  },
+  "keywords": [
+    "Todo",
+    "React"
+  ],
+  "author": "Pontakorn Paesaeng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pontakornth/todos-with-group/issues"
+  },
+  "homepage": "https://github.com/pontakornth/todos-with-group#readme"
+}
