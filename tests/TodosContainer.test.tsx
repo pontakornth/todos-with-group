@@ -1,10 +1,19 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import TodosContainer from '../components/TodosContainer';
 
 describe('App', () => {
   it('can render properly', () => {
-    const wrapper = shallow(<TodosContainer />);
+    const wrapper = mount(<TodosContainer />);
     expect(wrapper).toBeTruthy();
+  });
+  it('can add todo group', () => {
+    const wrapper = mount(<TodosContainer />);
+    let input = wrapper.find('input').getDOMNode<HTMLInputElement>();
+    input.value = 'Loy';
+    wrapper.find('button').simulate('click');
+    input = wrapper.find('input').getDOMNode<HTMLInputElement>();
+    expect(input.value.length).toEqual(0);
+    expect(wrapper.text()).toMatch('Loy');
   });
 });
