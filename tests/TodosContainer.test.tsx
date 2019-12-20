@@ -4,6 +4,7 @@ import TodosContainer from '../components/TodosContainer';
 
 describe('App', () => {
   it('can render properly', () => {
-    expect(true).toBeFalsy();
+    const wrapper = shallow(<TodosContainer />);
+    expect(wrapper).toBeTruthy();
   });
 });
