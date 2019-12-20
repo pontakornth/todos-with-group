@@ -1,9 +1,12 @@
 {
     "extends": ["airbnb"],
-    "plugins": ["@typescript-eslint"],
+    "plugins": ["@typescript-eslint","jest"],
     "parser": "@typescript-eslint/parser",
     "rules": {
       "import/no-unresolved": 0,
       "react/jsx-filename-extension": [2,{ "extensions": [".jsx",".tsx"] }]
-        }
+    },
+    "env": {
+      "jest": true
+    }
 }
