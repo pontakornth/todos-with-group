@@ -1,10 +1,13 @@
 {
   "name": "todos-with-group",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Todo but with group",
   "main": "index.html",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "repository": {
     "type": "git",
