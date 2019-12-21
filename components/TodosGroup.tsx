@@ -1,8 +1,13 @@
 import React from 'react';
 
-interface TodosGroupProps {
+export interface TodosGroupProps {
     name: string;
     todos?: object;
+}
+
+export interface TodoItem {
+    name: string;
+    isCompleted: boolean;
 }
 
 const TodosGroup = ({ name }: TodosGroupProps) => (
