@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import TodosGroup from './TodosGroup';
 
 const TodosContainer = () => {
-  const [todosGroups, setTodosGroups] = useState(['1']);
+  const [todosGroups, setTodosGroups] = useState([]);
   const [groupName, setGroupName] = useState('');
   const addTodoGroups = (todoGroup: string) => {
     setTodosGroups([...todosGroups, todoGroup]);
@@ -16,7 +17,9 @@ const TodosContainer = () => {
     <div className="Container">
       <input value={groupName} onChange={changeName} />
       <button type="button" onClick={handleClick}>Add</button>
-      {todosGroups.map((x) => (<h1>{x}</h1>))}
+      {todosGroups.length > 0 ? todosGroups.map((x) => (
+        <TodosGroup name={x} />
+      )) : 'No todos group'}
     </div>
   );
 };

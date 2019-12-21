@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import TodosContainer from '../components/TodosContainer';
+import TodosGroup from '../components/TodosGroup';
 
 describe('App', () => {
   it('can render properly', () => {
@@ -14,6 +15,6 @@ describe('App', () => {
     wrapper.find('button').simulate('click');
     input = wrapper.find('input').getDOMNode<HTMLInputElement>();
     expect(input.value.length).toEqual(0);
-    expect(wrapper.text()).toMatch('Loy');
+    expect(wrapper.exists(TodosGroup)).toEqual(true);
   });
 });
