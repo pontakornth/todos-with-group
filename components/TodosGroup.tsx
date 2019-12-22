@@ -30,9 +30,9 @@ const TodosGroup = ({ name }: TodosGroupProps) => {
     setNewTodoName('');
   };
   const handleCheck = (index: number) => {
-    setTodosItems([...todosItems.slice(0, index - 1),
-      { ...todosItems[index], isCompleted: !todosItems[index].isCompleted },
-      todosItems.slice(index + 1)]);
+    setTodosItems(todosItems.map((todo, todoIndex) => (todoIndex === index
+      ? { ...todo, isCompleted: !todo.isCompleted }
+      : todo)));
   };
   return (
     <div className="todo-group">
