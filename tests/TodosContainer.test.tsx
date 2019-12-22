@@ -10,10 +10,8 @@ describe('App', () => {
   });
   it('can add todo group', () => {
     const wrapper = mount(<TodosContainer />);
-    let input = wrapper.find('input').getDOMNode<HTMLInputElement>();
-    input.value = 'Loy';
+    const input = wrapper.find('.todoGroupName').simulate('change', { target: { value: 'Loy' } }).getDOMNode<HTMLInputElement>();
     wrapper.find('button').simulate('click');
-    input = wrapper.find('input').getDOMNode<HTMLInputElement>();
     expect(input.value.length).toEqual(0);
     expect(wrapper.exists(TodosGroup)).toEqual(true);
   });

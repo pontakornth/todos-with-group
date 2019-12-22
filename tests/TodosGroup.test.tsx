@@ -1,19 +1,19 @@
 import React from 'react';
-import { mount, ReactWrapper } from 'enzyme';
-import TodosGroup, { TodosGroupProps, TodoItem } from '../components/TodosGroup';
+// eslint-disable-next-line no-unused-vars
+import Enzyme, { mount } from 'enzyme';
+import TodosGroup from '../components/TodosGroup';
 
 describe('TodosGroup Test', () => {
-  function addOneTodo(name: string) : {wrapper: ReactWrapper, input: HTMLInputElement} {
+  function addOneTodo(name: string) : {wrapper: Enzyme.ReactWrapper, input: HTMLInputElement} {
     const wrapper = mount(<TodosGroup name="Task" />);
-    const input = wrapper.find('input[type="text"]').first().getDOMNode<HTMLInputElement>();
-    input.value = name;
+    const input = wrapper.find('input[type="text"]').first().simulate('change', { target: { value: name } }).getDOMNode<HTMLInputElement>();
     wrapper.find('button').simulate('click');
     return { wrapper, input };
   }
   it('can contain a todo item', () => {
-    const { wrapper, input } = addOneTodo('Done');
+    const { wrapper, input } = addOneTodo('Jojo');
     expect(input.value).toEqual('');
-    expect(wrapper.text()).toMatch('Done');
+    expect(wrapper.find('li').text()).toMatch('Jojo');
   });
   it('can trigger a todo', () => {
     const { wrapper } = addOneTodo('done');
