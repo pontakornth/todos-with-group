@@ -12,10 +12,11 @@ const TodosContainer = () => {
   };
   const handleClick = () => {
     addTodoGroups(groupName);
+    setGroupName('');
   };
   return (
     <div className="Container">
-      <input value={groupName} onChange={changeName} />
+      <input className="todoGroupName" value={groupName} onChange={changeName} />
       <button type="button" onClick={handleClick}>Add</button>
       {todosGroups.length > 0 ? todosGroups.map((x) => (
         <TodosGroup name={x} />
