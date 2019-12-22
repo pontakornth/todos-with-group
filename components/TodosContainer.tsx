@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import TodosGroup from './TodosGroup';
 
+interface ITodoGroup {
+  name: string;
+  key: any;
+}
+
 const TodosContainer = () => {
   const [todosGroups, setTodosGroups] = useState([]);
   const [groupName, setGroupName] = useState('');
-  const addTodoGroups = (todoGroup: string) => {
+  const addTodoGroups = (todoGroup: ITodoGroup) => {
     setTodosGroups([...todosGroups, todoGroup]);
   };
   const changeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGroupName(e.target.value);
   };
   const handleClick = () => {
-    addTodoGroups(groupName);
+    addTodoGroups({ name: groupName, key: Date.now() });
     setGroupName('');
   };
   return (

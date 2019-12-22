@@ -8,6 +8,7 @@ export interface TodosGroupProps {
 export interface TodoItem {
     name: string;
     isCompleted: boolean;
+    key: any;
 }
 
 
@@ -24,6 +25,7 @@ const TodosGroup = ({ name }: TodosGroupProps) => {
     addTodoItem({
       name: newTodoName,
       isCompleted: false,
+      key: Date.now(),
     });
     setNewTodoName('');
   };
@@ -39,7 +41,7 @@ const TodosGroup = ({ name }: TodosGroupProps) => {
       </h1>
       <ul>
         {todosItems ? todosItems.map((x: TodoItem, index: number) => (
-          <li className="todoItem">
+          <li key={x.key} className="todoItem">
             <input onChange={() => handleCheck(index)} checked={x.isCompleted} type="checkbox" name={x.name} />
             <p>{x.name}</p>
           </li>
