@@ -24,7 +24,7 @@ const TodosContainer = () => {
       <input className="todoGroupName" value={groupName} onChange={changeName} />
       <button type="button" onClick={handleClick}>Add</button>
       {todosGroups.length > 0 ? todosGroups.map((x) => (
-        <TodosGroup name={x} />
+        <TodosGroup key={x.key} name={x.name} />
       )) : 'No todos group'}
     </div>
   );
