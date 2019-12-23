@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { css } from 'emotion';
+/** @jsx jsx */
+import { useState } from 'react';
+import { css, jsx } from '@emotion/core';
 
 export interface TodosGroupProps {
     name: string;
@@ -36,10 +37,10 @@ const TodosGroup = ({ name }: TodosGroupProps) => {
       : todo)));
   };
   return (
-    <div className={css`
+    <div css={css`
       border: 2px solid rgba(33,33,33,0.5);
       border-radius: 8px;
-      padding: 0.5rem;
+      padding: 1rem;
     `}
     >
       <h1>
