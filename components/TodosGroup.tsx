@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { css } from 'emotion';
 
 export interface TodosGroupProps {
     name: string;
@@ -35,7 +36,12 @@ const TodosGroup = ({ name }: TodosGroupProps) => {
       : todo)));
   };
   return (
-    <div className="todo-group">
+    <div className={css`
+      border: 2px solid rgba(33,33,33,0.5);
+      border-radius: 8px;
+      padding: 0.5rem;
+    `}
+    >
       <h1>
         {name}
       </h1>
