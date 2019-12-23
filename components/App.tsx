@@ -1,16 +1,29 @@
-import React from 'react';
-import { css, injectGlobal } from 'emotion';
+/** @jsx jsx */
+import { Global, css, jsx } from '@emotion/core';
+import emotionNormalize from 'emotion-normalize';
 import TodoContainer from './TodosContainer';
-import 'normalize.css';
+
 
 const App = () => (
-  <div className={css`
-     width: 100%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-  `}
+  <div css={css`
+         width: 100%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+      `}
   >
+    <Global styles={css`
+  ${emotionNormalize}
+  html,
+    body {
+      padding: 0;
+      margin: 0;
+      background: white;
+      min-height: 100%;
+      font-family: Helvetica, Arial, sans-serif;
+    }
+  `}
+    />
     <TodoContainer />
   </div>
 );
