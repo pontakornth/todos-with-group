@@ -1,6 +1,9 @@
 /** @jsx jsx */
 import { useState } from 'react';
 import { css, jsx } from '@emotion/core';
+import styled from '@emotion/styled';
+import { TextInput } from './ui/Input';
+import Button from './ui/Button';
 
 export interface TodosGroupProps {
     name: string;
@@ -13,6 +16,11 @@ export interface TodoItem {
     key: any;
 }
 
+const TodoItemElement = styled.li`
+  width: 100%;
+  padding:1rem;
+  border: 1px solid rgba(4,4,4,0.12);
+`;
 
 const TodosGroup = ({ name }: TodosGroupProps) => {
   const [todosItems, setTodosItems] = useState([]);
@@ -38,25 +46,45 @@ const TodosGroup = ({ name }: TodosGroupProps) => {
   };
   return (
     <div css={css`
-      border: 2px solid rgba(33,33,33,0.5);
+      border: 1px solid rgba(33,33,33,0.2);
       border-radius: 8px;
       padding: 1rem;
     `}
     >
-      <h1>
+      <h1 css={css`
+        text-align:center;
+      `}
+      >
         {name}
       </h1>
-      <ul>
+      <ul css={css`
+        list-style: none;
+        padding: 0;
+      `}
+      >
         {todosItems ? todosItems.map((x: TodoItem, index: number) => (
-          <li key={x.key} className="todoItem">
+          <TodoItemElement key={x.key} className="todoItem">
             <input onChange={() => handleCheck(index)} checked={x.isCompleted} type="checkbox" name={x.name} />
             <p>{x.name}</p>
-          </li>
+          </TodoItemElement>
 
         )) : '' }
       </ul>
-      <input type="text" value={newTodoName} onChange={handleNewTodoChange} />
-      <button type="button" onClick={handleClick}>Add todo</button>
+      <div css={css`
+        width: 100%;
+      `}
+      >
+        <TextInput
+          css={css`
+          width: 100%;
+          margin-bottom:1rem;
+        `}
+          type="text"
+          value={newTodoName}
+          onChange={handleNewTodoChange}
+        />
+        <Button css={css`width: 100%`} type="button" onClick={handleClick}>Add todo</Button>
+      </div>
     </div>
   );
 };

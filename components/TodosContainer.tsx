@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { css } from 'emotion';
 import TodosGroup from './TodosGroup';
+import Button from './ui/Button';
+import { TextInput } from './ui/Input';
 
 interface ITodoGroup {
   name: string;
@@ -36,11 +38,12 @@ const TodosContainer = () => {
           display: flex;
           justify-content:center;
           padding: 1rem;
+          align-items: baseline;
       `
 }
       >
-        <input className="todoGroupName" value={groupName} onChange={changeName} />
-        <button type="button" onClick={handleClick}>Add</button>
+        <TextInput name="todo-container-form" className="todoGroupName" value={groupName} onChange={changeName} />
+        <Button type="button" onClick={handleClick}>Add</Button>
       </div>
       {todosGroups.length > 0 ? todosGroups.map((x) => (
         <div

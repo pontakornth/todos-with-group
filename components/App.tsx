@@ -22,6 +22,9 @@ const App = () => (
       min-height: 100%;
       font-family: Helvetica, Arial, sans-serif;
     }
+    * {
+      box-sizing: border-box;
+    }
   `}
     />
     <TodoContainer />
