@@ -65,7 +65,13 @@ const TodosGroup = ({ name }: TodosGroupProps) => {
         {todosItems ? todosItems.map((x: TodoItem, index: number) => (
           <TodoItemElement key={x.key} className="todoItem">
             <input onChange={() => handleCheck(index)} checked={x.isCompleted} type="checkbox" name={x.name} />
-            <p>{x.name}</p>
+            <p css={css`
+            display:inline-block;
+            padding: 0.5rem;
+            `}
+            >
+              {x.name}
+            </p>
           </TodoItemElement>
 
         )) : '' }
@@ -78,6 +84,7 @@ const TodosGroup = ({ name }: TodosGroupProps) => {
           css={css`
           width: 100%;
           margin-bottom:1rem;
+          margin-top: 1rem;
         `}
           type="text"
           value={newTodoName}
