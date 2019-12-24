@@ -45,15 +45,15 @@ const TodosContainer = () => {
         <TextInput name="todo-container-form" className="todoGroupName" value={groupName} onChange={changeName} />
         <Button type="button" onClick={handleClick}>Add</Button>
       </div>
-      {todosGroups.length > 0 ? todosGroups.map((x) => (
+      {todosGroups.length > 0 ? todosGroups.map((todoGroup) => (
         <div
-          key={x.key}
+          key={todoGroup.key}
           className={css`
            width: 90%;
            padding: 1rem;
         `}
         >
-          <TodosGroup name={x.name} />
+          <TodosGroup name={todoGroup.name} />
         </div>
       )) : (
         <p>
