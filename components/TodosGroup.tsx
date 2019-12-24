@@ -28,6 +28,9 @@ const TodosGroup = ({ name }: TodosGroupProps) => {
   const addTodoItem = (newTodo: TodoItem): void => {
     setTodosItems([...todosItems, newTodo]);
   };
+  const deleteTodo = ({ key } : TodoItem) => {
+    setTodosItems(todosItems.filter((x) => x.key !== key));
+  };
   const handleNewTodoChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setNewTodoName(e.target.value);
   };
@@ -44,6 +47,7 @@ const TodosGroup = ({ name }: TodosGroupProps) => {
       ? { ...todo, isCompleted: !todo.isCompleted }
       : todo)));
   };
+
   return (
     <div css={css`
       border: 1px solid rgba(33,33,33,0.2);
@@ -62,16 +66,26 @@ const TodosGroup = ({ name }: TodosGroupProps) => {
         padding: 0;
       `}
       >
-        {todosItems ? todosItems.map((x: TodoItem, index: number) => (
-          <TodoItemElement key={x.key} className="todoItem">
-            <input onChange={() => handleCheck(index)} checked={x.isCompleted} type="checkbox" name={x.name} />
+        {todosItems ? todosItems.map((todo: TodoItem, index: number) => (
+          <TodoItemElement key={todo.key} css={css`position: relative`} className="todoItem">
+            <input onChange={() => handleCheck(index)} checked={todo.isCompleted} type="checkbox" name={todo.name} />
             <p css={css`
             display:inline-block;
             padding: 0.5rem;
             `}
             >
-              {x.name}
+              {todo.name}
             </p>
+            <Button
+              css={css`
+              position: absolute;
+              right: 1rem;
+
+            `}
+              onClick={() => deleteTodo(todo)}
+            >
+              Remove Todo
+            </Button>
           </TodoItemElement>
 
         )) : '' }
