@@ -25,7 +25,7 @@ describe('TodosGroup Test', () => {
     wrapper.find('li button').first().simulate('click');
     expect(wrapper.exists('li')).toBe(false);
   });
-  it('doesn\'t allow empty todo', () => {
+  it('cannot add an empty todo', () => {
     const { wrapper } = addOneTodo('');
     expect(wrapper.exists('li')).toBe(false);
   });
