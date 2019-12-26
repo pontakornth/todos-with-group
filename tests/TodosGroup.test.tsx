@@ -18,11 +18,15 @@ describe('TodosGroup Test', () => {
   it('can trigger a todo', () => {
     const { wrapper } = addOneTodo('done');
     const checkbox = wrapper.find('input[type="checkbox"]').first().simulate('change').getDOMNode<HTMLInputElement>();
-    expect(checkbox.checked).toEqual(true);
+    expect(checkbox.checked).toBe(true);
   });
   it('can delete a todo', () => {
     const { wrapper } = addOneTodo('Zawarudo');
     wrapper.find('li button').first().simulate('click');
-    expect(wrapper.exists('li')).toEqual(false);
+    expect(wrapper.exists('li')).toBe(false);
+  });
+  it('doesn\'t allow empty todo', () => {
+    const { wrapper } = addOneTodo('');
+    expect(wrapper.exists('li')).toBe(false);
   });
 });

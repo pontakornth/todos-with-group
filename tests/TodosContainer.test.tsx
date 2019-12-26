@@ -15,4 +15,9 @@ describe('App', () => {
     expect(input.value.length).toEqual(0);
     expect(wrapper.exists(TodosGroup)).toEqual(true);
   });
+  it('cannot add a todo group with empty name', () => {
+    const wrapper = mount(<TodosContainer />);
+    wrapper.find('button').simulate('click');
+    expect(wrapper.exists(TodosGroup)).toBe(false);
+  });
 });
