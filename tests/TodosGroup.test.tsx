@@ -20,4 +20,9 @@ describe('TodosGroup Test', () => {
     const checkbox = wrapper.find('input[type="checkbox"]').first().simulate('change').getDOMNode<HTMLInputElement>();
     expect(checkbox.checked).toEqual(true);
   });
+  it('can delete a todo', () => {
+    const { wrapper } = addOneTodo('Zawarudo');
+    wrapper.find('li button').first().simulate('click');
+    expect(wrapper.exists('li')).toEqual(false);
+  });
 });
