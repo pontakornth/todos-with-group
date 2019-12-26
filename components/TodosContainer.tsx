@@ -19,8 +19,10 @@ const TodosContainer = () => {
     setGroupName(e.target.value);
   };
   const handleClick = () => {
-    addTodoGroups({ name: groupName, key: Date.now() });
-    setGroupName('');
+    if (groupName.length > 0) {
+      addTodoGroups({ name: groupName, key: Date.now() });
+      setGroupName('');
+    }
   };
   return (
     <div className={

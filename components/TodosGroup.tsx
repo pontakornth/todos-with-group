@@ -35,12 +35,14 @@ const TodosGroup = ({ name }: TodosGroupProps) => {
     setNewTodoName(e.target.value);
   };
   const handleClick = (): void => {
-    addTodoItem({
-      name: newTodoName,
-      isCompleted: false,
-      key: Date.now(),
-    });
-    setNewTodoName('');
+    if (newTodoName.length > 0) {
+      addTodoItem({
+        name: newTodoName,
+        isCompleted: false,
+        key: Date.now(),
+      });
+      setNewTodoName('');
+    }
   };
   const handleCheck = (index: number) => {
     setTodosItems(todosItems.map((todo, todoIndex) => (todoIndex === index
