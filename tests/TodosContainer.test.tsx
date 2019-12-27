@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import TodosContainer from '../components/TodosContainer';
 import TodosGroup from '../components/TodosGroup';
 import { ErrorMessage } from '../components/ui/Input';
