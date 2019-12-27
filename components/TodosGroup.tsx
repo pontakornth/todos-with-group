@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { css, jsx } from '@emotion/core';
 import styled from '@emotion/styled';
-import { TextInput } from './ui/Input';
+import { TextInput, ErrorMessage } from './ui/Input';
 import Button from './ui/Button';
 
 export interface TodosGroupProps {
@@ -25,6 +25,7 @@ const TodoItemElement = styled.li`
 const TodosGroup = ({ name }: TodosGroupProps) => {
   const [todosItems, setTodosItems] = useState([]);
   const [newTodoName, setNewTodoName] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const addTodoItem = (newTodo: TodoItem): void => {
     setTodosItems([...todosItems, newTodo]);
   };
@@ -42,6 +43,9 @@ const TodosGroup = ({ name }: TodosGroupProps) => {
         key: Date.now(),
       });
       setNewTodoName('');
+      setErrorMessage('');
+    } else {
+      setErrorMessage('Name must not be empty');
     }
   };
   const handleCheck = (index: number) => {
@@ -96,6 +100,7 @@ const TodosGroup = ({ name }: TodosGroupProps) => {
         width: 100%;
       `}
       >
+        {errorMessage.length > 0 ? <ErrorMessage css={css`width: 100%`}>{errorMessage}</ErrorMessage> : ''}
         <TextInput
           css={css`
           width: 100%;

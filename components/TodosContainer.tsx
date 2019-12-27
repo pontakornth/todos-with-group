@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { css } from 'emotion';
 import TodosGroup from './TodosGroup';
 import Button from './ui/Button';
-import { TextInput } from './ui/Input';
+import { TextInput, ErrorMessage } from './ui/Input';
 
 interface ITodoGroup {
   name: string;
@@ -12,6 +12,7 @@ interface ITodoGroup {
 const TodosContainer = () => {
   const [todosGroups, setTodosGroups] = useState([]);
   const [groupName, setGroupName] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const addTodoGroups = (todoGroup: ITodoGroup) => {
     setTodosGroups([...todosGroups, todoGroup]);
   };
@@ -22,6 +23,9 @@ const TodosContainer = () => {
     if (groupName.length > 0) {
       addTodoGroups({ name: groupName, key: Date.now() });
       setGroupName('');
+      setErrorMessage('');
+    } else {
+      setErrorMessage('Group name must not be empty');
     }
   };
   return (
@@ -44,6 +48,7 @@ const TodosContainer = () => {
       `
 }
       >
+        {errorMessage.length > 0 ? <ErrorMessage css={css`width: 100%`}>{errorMessage}</ErrorMessage> : ''}
         <TextInput name="todo-container-form" className="todoGroupName" value={groupName} onChange={changeName} />
         <Button type="button" onClick={handleClick}>Add</Button>
       </div>
