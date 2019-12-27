@@ -7,4 +7,9 @@ export const TextInput = styled.input`
     display:block;
 `;
 
+export const ErrorMessage = styled.p`
+    color: #d9534f;
+    padding: 1rem;
+`;
+
 export const TextArea = TextInput.withComponent('textarea');
