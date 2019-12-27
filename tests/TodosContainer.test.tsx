@@ -1,7 +1,8 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import TodosContainer from '../components/TodosContainer';
 import TodosGroup from '../components/TodosGroup';
+import { ErrorMessage } from '../components/ui/Input';
 
 describe('App', () => {
   it('can render properly', () => {
@@ -19,5 +20,6 @@ describe('App', () => {
     const wrapper = mount(<TodosContainer />);
     wrapper.find('button').simulate('click');
     expect(wrapper.exists(TodosGroup)).toBe(false);
+    expect(wrapper.exists(ErrorMessage)).toBe(true);
   });
 });

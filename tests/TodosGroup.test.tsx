@@ -2,6 +2,7 @@ import React from 'react';
 // eslint-disable-next-line no-unused-vars
 import Enzyme, { mount } from 'enzyme';
 import TodosGroup from '../components/TodosGroup';
+import { ErrorMessage } from '../components/ui/Input';
 
 describe('TodosGroup Test', () => {
   function addOneTodo(name: string) : {wrapper: Enzyme.ReactWrapper, input: HTMLInputElement} {
@@ -28,5 +29,6 @@ describe('TodosGroup Test', () => {
   it('cannot add an empty todo', () => {
     const { wrapper } = addOneTodo('');
     expect(wrapper.exists('li')).toBe(false);
+    expect(wrapper.exists(ErrorMessage)).toBe(true);
   });
 });
