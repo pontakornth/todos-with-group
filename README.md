@@ -8,5 +8,7 @@ Core feature
 - [x] Can remove todos
 - [ ] Can edit todos
 - [x] Can add a group of todos
-- [ ] Can store todo in localStorage
+- [x] Can store todo in localStorage
+
+The localStorage is partially implemented.
 
