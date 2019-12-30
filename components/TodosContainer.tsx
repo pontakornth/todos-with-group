@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { css } from 'emotion';
 import TodosGroup from './TodosGroup';
 import Button from './ui/Button';
@@ -13,8 +13,16 @@ const TodosContainer = () => {
   const [todosGroups, setTodosGroups] = useState([]);
   const [groupName, setGroupName] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  useEffect(() => {
+    const prevTodoGroups: Array<ITodoGroup> = JSON.parse(window.localStorage.getItem('todos-group-names'));
+    if (prevTodoGroups !== null && prevTodoGroups.length > 0) {
+      setTodosGroups(prevTodoGroups);
+    }
+  }, []);
   const addTodoGroups = (todoGroup: ITodoGroup) => {
-    setTodosGroups([...todosGroups, todoGroup]);
+    const prevTodoGroups = [...todosGroups, todoGroup];
+    setTodosGroups(prevTodoGroups);
+    window.localStorage.setItem('todos-group-names', JSON.stringify(prevTodoGroups));
   };
   const changeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGroupName(e.target.value);
