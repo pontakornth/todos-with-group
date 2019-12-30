@@ -4,11 +4,11 @@ import Enzyme, { mount } from 'enzyme';
 import TodosGroup from '../components/TodosGroup';
 import { ErrorMessage } from '../components/ui/Input';
 
+const globalAny:any = global;
 describe('TodosGroup Test', () => {
   beforeAll(() => {
     // eslint-disable-next-line no-undef
-    const window: any = {};
-    window.localStorage = {
+    globalAny.localStorage = {
       getItem(key) {
         return this[key];
       },
@@ -16,7 +16,7 @@ describe('TodosGroup Test', () => {
         this[key] = value;
       },
     };
-    window.sessionStorage = window.localStorage;
+    globalAny.sessionStorage = globalAny.localStorage;
   });
   function addOneTodo(name: string) : {wrapper: Enzyme.ReactWrapper, input: HTMLInputElement} {
     const wrapper = mount(<TodosGroup name="Task" />);
@@ -49,5 +49,5 @@ describe('TodosGroup Test', () => {
     wrapper.unmount();
     const newWrapper = mount(<TodosGroup name="Task" />);
     expect(newWrapper.find('li').first().text()).toMatch('za');
-  })
+  });
 });
