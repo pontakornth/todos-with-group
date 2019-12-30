@@ -4,19 +4,25 @@ import TodosContainer from '../components/TodosContainer';
 import TodosGroup from '../components/TodosGroup';
 import { ErrorMessage } from '../components/ui/Input';
 
+const globalAny:any = global;
 describe('App', () => {
   beforeAll(() => {
     // eslint-disable-next-line no-undef
-    const window: any = {};
-    window.localStorage = {
+    globalAny.localStorage = {
       getItem(key) {
-        return this[key];
+        return this.store[key];
       },
       setItem(key, value) {
-        this[key] = value;
+        this.store[key] = value;
+      },
+      clear() {
+        this.store = {};
       },
     };
-    window.sessionStorage = window.localStorage;
+    globalAny.sessionStorage = globalAny.localStorage;
+  });
+  beforeEach(() => {
+    globalAny.localStorage.clear();
   });
   it('can render properly', () => {
     const wrapper = mount(<TodosContainer />);
