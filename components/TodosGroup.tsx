@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { css, jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import { TextInput, ErrorMessage } from './ui/Input';
@@ -26,8 +26,16 @@ const TodosGroup = ({ name }: TodosGroupProps) => {
   const [todosItems, setTodosItems] = useState([]);
   const [newTodoName, setNewTodoName] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  useEffect(() => {
+    const prevTodos: Array<TodoItem> = JSON.parse(window.localStorage.getItem(`todo-${name}`));
+    if (prevTodos !== null) {
+      setTodosItems(prevTodos);
+    }
+  }, []);
   const addTodoItem = (newTodo: TodoItem): void => {
-    setTodosItems([...todosItems, newTodo]);
+    const prevTodos = [...todosItems, newTodo];
+    window.localStorage.setItem(`todo-${name}`, JSON.stringify(prevTodos));
+    setTodosItems(prevTodos);
   };
   const deleteTodo = ({ key } : TodoItem) => {
     setTodosItems(todosItems.filter((x) => x.key !== key));
@@ -111,7 +119,7 @@ const TodosGroup = ({ name }: TodosGroupProps) => {
           value={newTodoName}
           onChange={handleNewTodoChange}
         />
-        <Button css={css`width: 100%`} type="button" onClick={handleClick}>Add todo</Button>
+        <Button className="addButton" css={css`width: 100%`} type="button" onClick={handleClick}>Add todo</Button>
       </div>
     </div>
   );

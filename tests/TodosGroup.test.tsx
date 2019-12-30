@@ -10,13 +10,19 @@ describe('TodosGroup Test', () => {
     // eslint-disable-next-line no-undef
     globalAny.localStorage = {
       getItem(key) {
-        return this[key];
+        return this.store[key];
       },
       setItem(key, value) {
-        this[key] = value;
+        this.store[key] = value;
+      },
+      clear() {
+        this.store = {}
       },
     };
     globalAny.sessionStorage = globalAny.localStorage;
+  });
+  beforeEach(() => {
+    globalAny.localStorage.clear();
   });
   function addOneTodo(name: string) : {wrapper: Enzyme.ReactWrapper, input: HTMLInputElement} {
     const wrapper = mount(<TodosGroup name="Task" />);
