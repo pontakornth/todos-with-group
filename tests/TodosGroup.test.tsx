@@ -5,6 +5,19 @@ import TodosGroup from '../components/TodosGroup';
 import { ErrorMessage } from '../components/ui/Input';
 
 describe('TodosGroup Test', () => {
+  beforeAll(() => {
+    // eslint-disable-next-line no-undef
+    const window: any = {};
+    window.localStorage = {
+      getItem(key) {
+        return this[key];
+      },
+      setItem(key, value) {
+        this[key] = value;
+      },
+    };
+    window.sessionStorage = window.localStorage;
+  });
   function addOneTodo(name: string) : {wrapper: Enzyme.ReactWrapper, input: HTMLInputElement} {
     const wrapper = mount(<TodosGroup name="Task" />);
     const input = wrapper.find('input[type="text"]').first().simulate('change', { target: { value: name } }).getDOMNode<HTMLInputElement>();
@@ -31,4 +44,10 @@ describe('TodosGroup Test', () => {
     expect(wrapper.exists('li')).toBe(false);
     expect(wrapper.exists(ErrorMessage)).toBe(true);
   });
+  it('can preserve todo list', () => {
+    const { wrapper } = addOneTodo('za');
+    wrapper.unmount();
+    const newWrapper = mount(<TodosGroup name="Task" />);
+    expect(newWrapper.find('li').first().text()).toMatch('za');
+  })
 });
