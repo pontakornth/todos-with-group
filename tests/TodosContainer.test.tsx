@@ -50,4 +50,11 @@ describe('App', () => {
     const newWrapper = mount(<TodosContainer />);
     expect(newWrapper.find(TodosGroup).first().prop('name')).toMatch('Loy');
   });
+  it('can remove todo group', () => {
+    const wrapper = mount(<TodosContainer />);
+    wrapper.find('input[name="todo-container-form"]').simulate('change', { target: { value: 'Loy' } });
+    wrapper.find('button').simulate('click');
+    wrapper.find('.delete-button').simulate('click');
+    expect(wrapper.exists(TodosGroup)).toBe(false);
+  });
 });
