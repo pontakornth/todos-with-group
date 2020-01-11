@@ -16,7 +16,7 @@ describe('TodosGroup Test', () => {
         this.store[key] = value;
       },
       clear() {
-        this.store = {}
+        this.store = {};
       },
     };
     globalAny.sessionStorage = globalAny.localStorage;
@@ -55,5 +55,10 @@ describe('TodosGroup Test', () => {
     wrapper.unmount();
     const newWrapper = mount(<TodosGroup name="Task" />);
     expect(newWrapper.find('li').first().text()).toMatch('za');
+  });
+  it('can edit a todo', () => {
+    const { wrapper } = addOneTodo('a Todo');
+    wrapper.find('input.todo-list').first().simulate('change', { target: { value: 'Jojo' } });
+    expect(wrapper.text()).toMatch('Jojo');
   });
 });
